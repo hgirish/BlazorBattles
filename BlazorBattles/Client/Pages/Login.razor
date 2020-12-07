@@ -23,7 +23,7 @@ Please log in below or <NavLink href="register">register</NavLink> for a new acc
 
     private BlazorBattles.Shared.UserLogin user = new BlazorBattles.Shared.UserLogin();
 
-    private void HandleLogin()
+    private async void HandleLogin()
     {
         await LocalStorage.SetItemAsync<bool>("isAuthenticated", true);
         await AuthStateProvider.GetAuthenticationStateAsync();
