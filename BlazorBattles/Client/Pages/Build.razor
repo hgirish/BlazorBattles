@@ -2,9 +2,10 @@
 @inject BlazorBattles.Client.Services.IBananaService BananaService
 @inject BlazorBattles.Client.Services.IUnitService UnitService;
 @inject IToastService ToastService 
-
+@attribute [Authorize]
 
 <h3>Build</h3>
+
   <div class="form-group">
       <select @bind="selectedUnitId" class="form-control">
           @foreach (var unit in UnitService.Units)
