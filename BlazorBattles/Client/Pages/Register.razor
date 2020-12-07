@@ -71,4 +71,8 @@
         NavigationManager.NavigateTo("login");
         message = "Store this new user in the datbase!";
     }
+    protected override async Task OnInitializedAsync()
+    {
+        await UnitService.LoadUnitsAsync();
+    }
 }

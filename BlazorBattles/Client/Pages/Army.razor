@@ -4,7 +4,8 @@
 @attribute [Authorize]
 
 <h3>Army</h3>
-
+@if (UnitService.Units.Count > 0)
+{
 @foreach (var userUnit in UnitService.MyUnits)
 {
     <div class="army-list">
@@ -14,7 +15,7 @@
                 case 1: <img src="icons/W_Sword006.png" /> break;
                 case 2: <img src="icons/S_Bow08.png" /> break;
                 case 3: <img src="icons/C_Hat01.png" /> break;
-                
+
             }
         </div>
         <div>
@@ -25,6 +26,14 @@
         </div>
     </div>
 }
+}
+else
+{
+    <span>Loading Units...</span>
+}
 @code {
-
+    protected override async Task OnInitializedAsync()
+    {
+        await UnitService.LoadUnitsAsync();
+    }
 }

@@ -24,7 +24,7 @@
 }
 
 @code {
-    
+
     int selectedUnitId = 1;
     bool needMoreBananas = false;
     public void BuildUnit()
@@ -41,5 +41,9 @@
         needMoreBananas = false;
         BananaService.EatBananas(selectedUnit.BananaCost);
         UnitService.AddUnit(selectedUnitId);
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        await UnitService.LoadUnitsAsync();
     }
 }
