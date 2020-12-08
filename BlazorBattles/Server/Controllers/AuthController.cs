@@ -1,9 +1,6 @@
 ﻿using BlazorBattles.Server.Data;
 using BlazorBattles.Shared;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BlazorBattles.Server.Controllers
@@ -22,7 +19,7 @@ namespace BlazorBattles.Server.Controllers
         public async Task<IActionResult> Register(UserRegister request)
         {
             var response = await _authRepository.Register(
-                new Shared.User
+                new User
                 {
                     Username = request.UserName,
                     Email = request.Email,
@@ -30,6 +27,18 @@ namespace BlazorBattles.Server.Controllers
                     DateOfBirth = request.DateOfBirth,
                     IsConfirmed = request.IsConfirmed
                 }, request.Password);
+            if (!response.Success)
+            {
+                return BadRequest(response);
+            }
+            return Ok(response);
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(UserLogin request)
+        {
+            var response = await _authRepository.Login(request.Email, request.Password);
+
             if (!response.Success)
             {
                 return BadRequest(response);

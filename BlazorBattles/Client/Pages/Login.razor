@@ -6,9 +6,9 @@ Please log in below or <NavLink href="register">register</NavLink> for a new acc
                 <EditForm Model="user" OnValidSubmit="HandleLogin">
                     <DataAnnotationsValidator />
                     <div class="form-group">
-                        <label for="username">Username</label>
-                        <InputText id="username" @bind-Value="user.UserName" class="form-control" />
-                        <ValidationMessage For="@(()=> user.UserName)" />
+                        <label for="email">Email</label>
+                        <InputText id="email" @bind-Value="user.Email" class="form-control" />
+                        <ValidationMessage For="@(()=> user.Email)" />
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
