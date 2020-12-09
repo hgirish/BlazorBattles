@@ -2,9 +2,6 @@
 using BlazorBattles.Shared;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BlazorBattles.Server.Controllers
@@ -66,4 +63,5 @@ namespace BlazorBattles.Server.Controllers
         }
 
     }
+
 }
