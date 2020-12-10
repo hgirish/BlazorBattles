@@ -82,7 +82,7 @@ namespace BlazorBattles.Server.Data
             }
         }
 
-        public async Task<ServiceResponse<int>> Register(User user, string password)
+        public async Task<ServiceResponse<int>> Register(User user, string password, int startUnitId)
         {
             if (await UserExists(user.Email))
             {
@@ -98,11 +98,27 @@ namespace BlazorBattles.Server.Data
 
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
+
+            await AddStartingUnit(user, startUnitId);
+
             return new ServiceResponse<int>
             {
                 Data = user.Id,
                 Message = "Registration successful!"
             };
+        }
+
+        private async  Task AddStartingUnit(User user, int startUnitId)
+        {
+            var unit = await _context.Units.FirstOrDefaultAsync<Unit>(u => u.Id == startUnitId);
+            await _context.UserUnits.AddAsync(new UserUnit
+            {
+                UnitId = unit.Id,
+                UserId = user.Id,
+                HitPoints = unit.HitPoints
+            });
+
+            await _context.SaveChangesAsync();
         }
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
