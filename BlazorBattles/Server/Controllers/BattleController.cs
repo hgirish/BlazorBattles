@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BlazorBattles.Server.Controllers
 {
-    [Route("api/[controller")]
+    [Route("api/[controller]")]
     [ApiController]
     [Authorize]
     public class BattleController: ControllerBase
