@@ -1,4 +1,5 @@
 ﻿using BlazorBattles.Shared;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace BlazorBattles.Client.Services
