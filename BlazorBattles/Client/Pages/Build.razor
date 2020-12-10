@@ -27,20 +27,9 @@
 
     int selectedUnitId = 1;
     bool needMoreBananas = false;
-    public void BuildUnit()
-    {
-        BlazorBattles.Shared.Unit selectedUnit =
-            UnitService.Units.FirstOrDefault(x => x.Id == selectedUnitId);
-
-        if (BananaService.Bananas < selectedUnit.BananaCost)
-        {
-            needMoreBananas = true;
-            ToastService.ShowError("Not enough bananas!", ":(");
-            return;
-        }
-        needMoreBananas = false;
-        BananaService.EatBananas(selectedUnit.BananaCost);
-        UnitService.AddUnit(selectedUnitId);
+    public async Task BuildUnit()
+    {        
+     await    UnitService.AddUnit(selectedUnitId);
     }
     protected override async Task OnInitializedAsync()
     {
